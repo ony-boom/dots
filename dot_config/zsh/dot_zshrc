@@ -25,3 +25,4 @@ zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
 # Lazy to configure prompt
 command -v starship >/dev/null && eval "$(starship init zsh)"
 command -v atuin >/dev/null && eval "$(atuin init zsh)"
+command -v zoxide >/dev/null && eval "$(zoxide init zsh)"

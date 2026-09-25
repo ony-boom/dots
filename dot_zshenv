@@ -1,7 +1,9 @@
-# Read by zsh from $HOME before anything else; moves the rest of the zsh
-# config to ~/.config/zsh (NixOS set this as a session variable).
-export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
-export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
-export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
-export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
-export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+# Read by zsh from $HOME before anything else. Session variables live in
+# ~/.config/environment.d (single source of truth); systemd already exports
+# them for graphical sessions, this loads them for shells it didn't start
+# (SSH, TTY). Its KEY=value lines are valid shell assignments.
+[[ -n "$ZDOTDIR" ]] || () {
+  setopt local_options all_export
+  local f
+  for f in "$HOME"/.config/environment.d/*.conf(N); do source "$f"; done
+}
