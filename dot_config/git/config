@@ -1,6 +1,6 @@
 [user]
 	name = Ony
-	email = {{ if eq .chezmoi.hostname "makima" }}ony.rakotonirina@fluentech-group.com{{ else }}ony@ony.world{{ end }}
+	email = ony.rakotonirina@fluentech-group.com
 [init]
 	defaultBranch = main
 [core]
