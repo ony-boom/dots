@@ -27,3 +27,5 @@ source "$XDG_DATA_HOME/fsh/fast-syntax-highlighting.plugin.zsh"
 command -v starship >/dev/null && eval "$(starship init zsh)"
 command -v atuin >/dev/null && eval "$(atuin init zsh)"
 command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
+command -v mise >/dev/null && eval "$(mise activate zsh)"
+
