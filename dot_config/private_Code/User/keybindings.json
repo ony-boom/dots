@@ -1,0 +1,17 @@
+// Bindings that have to live outside VSCodeVim, because the focus is not in a
+// text editor (VSCodeVim only sees keys in the editor).
+[
+    // <leader>e is a toggle in nvim (Snacks.explorer). settings.json opens and
+    // focuses the tree; this closes it again and hands focus back.
+    {
+        "key": "space e",
+        "command": "workbench.action.toggleSidebarVisibility",
+        "when": "filesExplorerFocus && !inputFocus"
+    },
+    // <leader>c / :bd from the explorer, same as from the editor.
+    {
+        "key": "space c",
+        "command": "workbench.action.closeActiveEditor",
+        "when": "filesExplorerFocus && !inputFocus"
+    }
+]

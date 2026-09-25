@@ -1,0 +1,60 @@
+{
+	"agent": {
+		"always_allow_tool_actions": true,
+		"model_parameters": [],
+		"default_model": {
+			"provider": "copilot_chat",
+			"model": "gpt-4o"
+		}
+	},
+	"vim_mode": true,
+	"base_keymap": "JetBrains",
+	"relative_line_numbers": true,
+
+	"vim": {
+		"use_system_clipboard": "always",
+		"toggle_relative_line_numbers": true
+	},
+
+	"features": {
+		"edit_prediction_provider": "copilot"
+	},
+
+	"buffer_font_size": 19.0,
+	"buffer_font_family": "Hasklug Nerd Font",
+	"buffer_font_features": {
+		"calt": true
+	},
+
+	"theme": {
+		"dark": "Kanagawa Dragon",
+		"light": "Kanagawa Lotus"
+	},
+
+	"icon_theme": {
+		"dark": "JetBrains New UI Icons (Dark)",
+		"light": "JetBrains New UI Icons (Light)"
+	},
+	"format_on_save": "off",
+	"tab_size": 2,
+	"hard_tabs": true,
+	"languages": {
+		"JavaScript": {
+			"tab_size": 2
+		},
+		"TypeScript": {
+			"tab_size": 2
+		},
+		"TSX": {
+			"tab_size": 2
+		}
+	},
+	"lsp": {
+		"vscode-html-language-server": {
+			"binary": {
+				"path": "vscode-html-language-server",
+				"arguments": ["--stdio"]
+			}
+		}
+	}
+}

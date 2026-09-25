@@ -1,0 +1,27 @@
+alias ls='eza --icons=always'
+alias lg='lazygit'
+alias scrcpy='scrcpy --render-driver=opengles2'
+alias rf='rm -rf'
+alias kp='killport'
+
+
+# PATHS
+BUN_BIN="$XDG_CACHE_HOME/.bun/bin"
+export PNPM_HOME="$XDG_DATA_HOME/pnpm"
+export GOPATH="$HOME/go"
+export XDG_BIN_HOME="$HOME/.local/bin"
+[ -d /usr/lib/jvm/java ] && export JAVA_HOME="/usr/lib/jvm/java"
+export PATH="$PATH:$XDG_BIN_HOME:$GOPATH/bin:$PNPM_HOME:$PNPM_HOME/bin:$BUN_BIN:$JAVA_HOME"
+
+# Android stuff
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+# Completion
+autoload -U compinit && compinit
+zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+
+# Lazy to configure prompt
+command -v starship >/dev/null && eval "$(starship init zsh)"
+command -v atuin >/dev/null && eval "$(atuin init zsh)"

@@ -1,0 +1,4 @@
+#!/bin/sh
+# Rebuild the font cache when the bundled fonts change.
+# fonts hash: {{ output "sh" "-c" (printf "cat %s/dot_local/share/fonts/*/* | sha256sum" .chezmoi.sourceDir) | trim }}
+fc-cache -f "$HOME/.local/share/fonts" >/dev/null 2>&1 || true

@@ -1,0 +1,9 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+[character]
+success_symbol = "λ"
+error_symbol = "[λ](red)"
+vimcmd_symbol = "[](green)"
+
+[git_branch]
+symbol = ' '

@@ -1,0 +1,104 @@
+{
+    "chat.titleBar.openInAgentsWindow.enabled": false,
+    "workbench.colorTheme": "Rosé Pine",
+    "workbench.navigationControl.enabled": false,
+    "editor.fontFamily": "DankMono Nerd Font Mono",
+    "editor.fontSize": 16,
+    "editor.fontLigatures": true,
+    "window.commandCenter": false,
+    "workbench.layoutControl.enabled": false,
+    "claudeCode.preferredLocation": "panel",
+    "git.confirmSync": false,
+    "workbench.iconTheme": "material-icon-theme",
+    "git.autofetch": true,
+
+    // ---------------------------------------------------------------- vim ---
+    // Mirrors ~/.config/nvim/lua/keymaps.lua and the plugin keymaps
+    // (snacks picker, gitsigns, conform, lsp_setup, claudecode).
+    "vim.leader": "<space>",
+
+    // options.lua: ignorecase + smartcase; hlsearch is on so <Esc> :noh means
+    // something. No `clipboard=unnamedplus` in nvim, hence the explicit
+    // visual-mode `Y` -> "+y below.
+    "vim.hlsearch": true,
+    "vim.incsearch": true,
+    "vim.ignorecase": true,
+    "vim.smartcase": true,
+    "vim.useSystemClipboard": false,
+
+    // configs.lua TextYankPost highlight autocmd.
+    "vim.highlightedyank.enable": true,
+
+    // ":update" — let VS Code's native ctrl+s through instead of Vim eating it.
+    "vim.handleKeys": {
+        "<C-s>": false
+    },
+
+    "vim.normalModeKeyBindingsNonRecursive": [
+        // -- keymaps.lua --
+        { "before": ["<leader>", "c"], "commands": ["workbench.action.closeActiveEditor"] },
+        { "before": ["<C-d>"], "after": ["<C-d>", "z", "z"] },
+        { "before": ["<C-u>"], "after": ["<C-u>", "z", "z"] },
+
+        // -- snacks.lua (picker / explorer) --
+        { "before": ["<leader>", "e"], "commands": ["workbench.view.explorer"] },
+        { "before": ["<leader>", "f", "f"], "commands": ["workbench.action.quickOpen"] },
+        { "before": ["<leader>", "f", "b"], "commands": ["workbench.action.showAllEditors"] },
+        { "before": ["<leader>", "f", "w"], "commands": ["workbench.action.findInFiles"] },
+        { "before": ["<leader>", "f", "o"], "commands": ["workbench.action.openRecent"] },
+        { "before": ["<leader>", "s", "s"], "commands": ["workbench.action.gotoSymbol"] },
+        { "before": ["<leader>", "h"], "commands": ["workbench.action.showCommands"] },
+
+        // -- lsp_setup/mappings.lua --
+        { "before": ["<leader>", "l", "a"], "commands": ["editor.action.quickFix"] },
+        { "before": ["<leader>", "l", "d"], "commands": ["editor.action.marker.next"] },
+        { "before": ["<leader>", "l", "r"], "commands": ["editor.action.rename"] },
+        { "before": ["K"], "commands": ["editor.action.showHover"] },
+        { "before": ["g", "d"], "commands": ["editor.action.revealDefinition"] },
+        { "before": ["g", "D"], "commands": ["editor.action.revealDeclaration"] },
+        { "before": ["g", "r"], "commands": ["editor.action.goToReferences"] },
+
+        // -- formatting.lua (conform) --
+        { "before": ["<leader>", "l", "f"], "commands": ["editor.action.formatDocument"] },
+
+        // -- gitsigns.lua --
+        { "before": ["]", "h"], "commands": ["workbench.action.editor.nextChange"] },
+        { "before": ["[", "h"], "commands": ["workbench.action.editor.previousChange"] },
+        { "before": ["<leader>", "g", "s"], "commands": ["git.stageSelectedRanges"] },
+        { "before": ["<leader>", "g", "r"], "commands": ["git.revertSelectedRanges"] },
+        { "before": ["<leader>", "g", "p"], "commands": ["editor.action.dirtydiff.next"] },
+        { "before": ["<leader>", "g", "b"], "commands": ["git.blame.toggleEditorDecoration"] },
+
+        // -- ai.lua (claudecode.nvim -> Claude Code for VS Code) --
+        { "before": ["<leader>", "a", "c"], "commands": ["claude-vscode.toggleFocusView"] },
+        { "before": ["<leader>", "a", "f"], "commands": ["claude-vscode.focus"] },
+        { "before": ["<leader>", "a", "r"], "commands": ["claude-vscode.reopenClosedSession"] },
+        { "before": ["<leader>", "a", "b"], "commands": ["claude-vscode.insertAtMention"] },
+        { "before": ["<leader>", "a", "s"], "commands": ["claude-vscode.insertAtMention"] },
+        { "before": ["<leader>", "a", "a"], "commands": ["claude-vscode.acceptProposedDiff"] },
+        { "before": ["<leader>", "a", "d"], "commands": ["claude-vscode.rejectProposedDiff"] },
+
+        // -- bufferline nav, to match keymap.json (zed) and ideavimrc --
+        { "before": ["]", "b"], "commands": ["workbench.action.nextEditor"] },
+        { "before": ["[", "b"], "commands": ["workbench.action.previousEditor"] }
+    ],
+
+    "vim.visualModeKeyBindingsNonRecursive": [
+        // keymaps.lua: Y in visual -> system clipboard
+        { "before": ["Y"], "after": ["\"", "+", "y"] },
+
+        { "before": ["<C-d>"], "after": ["<C-d>", "z", "z"] },
+        { "before": ["<C-u>"], "after": ["<C-u>", "z", "z"] },
+
+        { "before": ["<leader>", "l", "a"], "commands": ["editor.action.quickFix"] },
+        { "before": ["<leader>", "l", "f"], "commands": ["editor.action.formatSelection"] },
+
+        { "before": ["]", "h"], "commands": ["workbench.action.editor.nextChange"] },
+        { "before": ["[", "h"], "commands": ["workbench.action.editor.previousChange"] },
+        { "before": ["<leader>", "g", "s"], "commands": ["git.stageSelectedRanges"] },
+        { "before": ["<leader>", "g", "r"], "commands": ["git.revertSelectedRanges"] },
+
+        { "before": ["<leader>", "a", "s"], "commands": ["claude-vscode.insertAtMention"] },
+        { "before": ["<leader>", "a", "b"], "commands": ["claude-vscode.insertAtMention"] }
+    ]
+}

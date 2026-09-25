@@ -1,0 +1,18 @@
+[user]
+	name = Ony
+	email = {{ if eq .chezmoi.hostname "makima" }}ony.rakotonirina@fluentech-group.com{{ else }}ony@ony.world{{ end }}
+[init]
+	defaultBranch = main
+[core]
+	autocrlf = input
+# GitHub over HTTPS with gh tokens: personal by default, work for its org.
+# The more specific URL wins; the empty helper resets inherited helpers.
+[credential "https://github.com"]
+	helper =
+	helper = !~/.config/git/gh-account-credential ony-boom
+[credential "https://github.com/fluentech-group"]
+	helper =
+	helper = !~/.config/git/gh-account-credential ony-fluent
+[credential "https://gist.github.com"]
+	helper =
+	helper = !gh auth git-credential

@@ -1,0 +1,47 @@
+[
+  {
+    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+    "bindings": {
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown",
+
+      "space l f": "editor::Format",
+      "space f f": "file_finder::Toggle",
+      "space e": "workspace::ToggleLeftDock",
+      "space f w": "pane::DeploySearch",
+      "space l r": "editor::Rename",
+      "space c": "pane::CloseActiveItem",
+      "space l a": "editor::ToggleCodeActions",
+      "space /": "editor::ToggleComments",
+
+      "] b": "pane::ActivateNextItem",
+      "[ b": "pane::ActivatePreviousItem"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == visual && !VimWaiting && !menu",
+    "bindings": {
+      "space l f": "editor::FormatSelections",
+      "g c": "editor::ToggleComments"
+    }
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "a": "project_panel::NewFile",
+      "A": "project_panel::NewDirectory",
+      "r": "project_panel::Rename",
+      "d": "project_panel::Delete",
+      "x": "project_panel::Cut",
+      "c": "project_panel::Copy",
+      "p": "project_panel::Paste",
+      "space e": "workspace::ToggleLeftDock",
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown"
+    }
+  }
+]
