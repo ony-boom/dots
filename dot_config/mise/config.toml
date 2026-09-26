@@ -1,6 +1,36 @@
 [tools]
 fd = "latest"
 jq = "latest"
+ripgrep = "latest"
+
+# languages
+deno = "latest"
+go = "latest"
 node = "lts"
 pnpm = "latest"
-ripgrep = "latest"
+rust = "stable"
+
+# language servers (nvim/lua/lsp_setup/servers.lua)
+lua-language-server = "latest"
+rust-analyzer = "latest"
+"go:golang.org/x/tools/gopls" = "latest"
+# nil_ls: not here -- its build runs `nix eval`, so it needs nix installed first
+biome = "latest"
+oxlint = "latest"
+"npm:oxfmt" = "latest"
+"npm:typescript" = "latest"
+"npm:typescript-language-server" = "latest"
+"npm:vscode-langservers-extracted" = "latest"
+"npm:@tailwindcss/language-server" = "latest"
+"npm:@olrtg/emmet-language-server" = "latest"
+"npm:@astrojs/language-server" = "latest"
+"npm:@angular/language-server" = "latest"
+"npm:@prisma/language-server" = "latest"
+
+# formatters (nvim/lua/plugins/formatting.lua)
+stylua = "latest"
+gofumpt = "latest"
+"go:golang.org/x/tools/cmd/goimports" = "latest"
+"github:kamadorueda/alejandra" = "latest"
+prettier = "latest"
+"npm:@fsouza/prettierd" = "latest"

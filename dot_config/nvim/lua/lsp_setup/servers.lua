@@ -9,7 +9,6 @@ return {
 	"tailwindcss",
 	"emmet_language_server",
 	"astro",
-	"svelte",
 	"angularls",
 	"denols",
 	"oxlint",
