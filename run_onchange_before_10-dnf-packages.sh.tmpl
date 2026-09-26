@@ -1,0 +1,31 @@
+{{ if eq .chezmoi.osRelease.id "fedora" -}}
+#!/bin/sh
+# System packages from .chezmoidata/packages.yaml. Re-runs when the list changes.
+set -eu
+{{ $p := .packages.fedora }}
+{{- range $p.copr }}
+sudo dnf copr enable -y {{ . }}
+{{- end }}
+{{- range $name, $url := $p.repos }}
+[ -f /etc/yum.repos.d/{{ $name }}.repo ] || sudo dnf config-manager addrepo --from-repofile={{ $url }}
+{{- end }}
+{{- range $name, $body := $p.repofiles }}
+sudo tee /etc/yum.repos.d/{{ $name }}.repo >/dev/null <<'EOF'
+{{ $body | trim }}
+EOF
+{{- end }}
+
+sudo dnf install -y {{ $p.dnf | join " " }}
+
+for pkg in {{ $p.absent | join " " }}; do
+  if rpm -q "$pkg" >/dev/null 2>&1; then sudo dnf remove -y "$pkg"; fi
+done
+
+# docker: daemon on boot, no sudo needed for the CLI (takes effect on next login)
+sudo systemctl enable --now docker
+id -nG "$USER" | grep -qw docker || sudo usermod -aG docker "$USER"
+
+# netbird: the rpm ships the binary only; the unit comes from `netbird service install`
+[ -f /etc/systemd/system/netbird.service ] || sudo netbird service install
+sudo systemctl enable --now netbird
+{{ end -}}

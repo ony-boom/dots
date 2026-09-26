@@ -1,0 +1,6 @@
+[tools]
+fd = "latest"
+jq = "latest"
+node = "lts"
+pnpm = "latest"
+ripgrep = "latest"

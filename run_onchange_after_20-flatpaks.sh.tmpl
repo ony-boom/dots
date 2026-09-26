@@ -1,0 +1,7 @@
+{{ if lookPath "flatpak" -}}
+#!/bin/sh
+# Flatpak apps from .chezmoidata/packages.yaml. Re-runs when the list changes.
+set -eu
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+flatpak install -y --noninteractive flathub {{ .packages.flatpak | join " " }}
+{{ end -}}

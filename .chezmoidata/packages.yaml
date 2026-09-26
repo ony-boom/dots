@@ -1,0 +1,55 @@
+# Declarative package list. Editing this file re-triggers the matching
+# run_onchange_ scripts on the next `chezmoi apply`.
+# Note: removing an entry does NOT uninstall it -- move it to `absent` instead.
+packages:
+  fedora:
+    copr:
+      - atim/starship
+      - dejan/lazygit
+      - imput/helium
+      - quadratech188/vicinae
+    repos:
+      docker-ce: https://download.docker.com/linux/fedora/docker-ce.repo
+    # repo files written verbatim to /etc/yum.repos.d/<name>.repo
+    repofiles:
+      netbird: |
+        [NetBird]
+        name=NetBird
+        baseurl=https://pkgs.netbird.io/yum/
+        enabled=1
+        gpgcheck=1
+        gpgkey=https://pkgs.netbird.io/yum/repodata/repomd.xml.key
+        repo_gpgcheck=1
+    dnf:
+      # shell & terminal
+      - zsh
+      - kitty
+      - atuin
+      - eza
+      - zoxide
+      - starship
+      - fastfetch
+      # dev
+      - neovim
+      - gh
+      - lazygit
+      - chezmoi
+      # docker
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin
+      - docker-compose-plugin
+      # desktop
+      - helium-bin
+      - vicinae
+      - netbird
+      - netbird-ui
+    absent:
+      - firefox
+      - firefox-langpacks
+  flatpak:
+    - com.mattjakeman.ExtensionManager
+    - com.stremio.Stremio
+    - org.gnome.seahorse.Application
+    - page.tesk.Refine

@@ -1,0 +1,7 @@
+#!/bin/sh
+# Install mise if missing, then the tools pinned in ~/.config/mise/config.toml.
+# mise config hash: {{ include "dot_config/mise/config.toml" | sha256sum }}
+set -eu
+export PATH="$HOME/.local/bin:$PATH"
+command -v mise >/dev/null || curl -fsSL https://mise.run | sh
+mise install --yes
