@@ -24,7 +24,6 @@ end
 require("conform").setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
-		nix = { "alejandra" },
 		go = { "gofumpt", "goimports" },
 		json = web,
 		jsonc = web,

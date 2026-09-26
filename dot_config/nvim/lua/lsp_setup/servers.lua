@@ -1,7 +1,6 @@
 return {
 	"gopls",
 	"lua_ls",
-	"nil_ls",
 	"ts_ls",
 	"cssls",
 	"jsonls",
