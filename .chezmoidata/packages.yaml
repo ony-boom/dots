@@ -34,6 +34,7 @@ packages:
       - gh
       - lazygit
       - chezmoi
+      - code
       # docker
       - docker-ce
       - docker-ce-cli
