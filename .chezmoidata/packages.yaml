@@ -20,6 +20,15 @@ packages:
         gpgcheck=1
         gpgkey=https://pkgs.netbird.io/yum/repodata/repomd.xml.key
         repo_gpgcheck=1
+      vscode: |
+        [code]
+        name=Visual Studio Code
+        baseurl=https://packages.microsoft.com/yumrepos/vscode
+        enabled=1
+        autorefresh=1
+        type=rpm-md
+        gpgcheck=1
+        gpgkey=https://packages.microsoft.com/keys/microsoft.asc
     dnf:
       # shell & terminal
       - zsh
