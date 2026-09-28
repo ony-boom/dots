@@ -3,6 +3,9 @@ fd = "latest"
 jq = "latest"
 ripgrep = "latest"
 
+# desktop
+"github:Satty-org/Satty" = "latest"
+
 # languages
 deno = "latest"
 go = "latest"
