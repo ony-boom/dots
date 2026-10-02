@@ -1,3 +1,11 @@
+if [[ -n "$KITTY_INSTALLATION_DIR" ]]; then
+    export KITTY_SHELL_INTEGRATION="enabled"
+    autoload -Uz -- "$KITTY_INSTALLATION_DIR"/shell-integration/zsh/kitty-integration
+    kitty-integration
+    unfunction kitty-integration
+fi
+
+
 alias ls='eza --icons=always'
 alias lg='lazygit'
 alias scrcpy='scrcpy --render-driver=opengles2'
@@ -21,9 +29,18 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 # Completion
 autoload -U compinit && compinit
 zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+zstyle ':completion:*' menu select                   # tab cycles with highlighted selection
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS} # color file candidates like ls
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' # case-insensitive
+
+# Plugins (declared in .chezmoiexternal.toml, installed by `chezmoi apply`)
+ZSH_PLUGINS="$XDG_DATA_HOME/zsh/plugins"
+# sourcing mode: zvm inits immediately so later keybinds (atuin, fsh) survive
+ZVM_INIT_MODE=sourcing
+source "$ZSH_PLUGINS/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
+source "$ZSH_PLUGINS/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
 
 # Lazy to configure prompt
-source "$XDG_DATA_HOME/fsh/fast-syntax-highlighting.plugin.zsh"
 command -v starship >/dev/null && eval "$(starship init zsh)"
 command -v atuin >/dev/null && eval "$(atuin init zsh)"
 command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
