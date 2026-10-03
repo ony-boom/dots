@@ -38,6 +38,7 @@ packages:
       - zoxide
       - starship
       - fastfetch
+      - scrcpy
       # dev
       - neovim
       - gh
