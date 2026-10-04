@@ -16,3 +16,7 @@
 [credential "https://gist.github.com"]
 	helper =
 	helper = !gh auth git-credential
+# GitLab over HTTPS with the glab token.
+[credential "https://gitlab.com"]
+	helper =
+	helper = !glab auth git-credential
