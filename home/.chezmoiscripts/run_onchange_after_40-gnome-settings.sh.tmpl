@@ -1,0 +1,7 @@
+{{ if lookPath "gsettings" -}}
+#!/bin/sh
+# GNOME preferences. Re-runs when this file changes.
+set -eu
+# and moving onto the desktop keeps the last window focused
+gsettings set org.gnome.desktop.wm.preferences focus-mode 'sloppy'
+{{ end -}}

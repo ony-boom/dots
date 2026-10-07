@@ -8,6 +8,7 @@ packages:
       - dejan/lazygit
       - imput/helium
       - quadratech188/vicinae
+      - scottames/ghostty
       - zeno/scrcpy
     repos:
       docker-ce: https://download.docker.com/linux/fedora/docker-ce.repo
@@ -33,7 +34,7 @@ packages:
     dnf:
       # shell & terminal
       - zsh
-      - kitty
+      - ghostty
       - atuin
       - eza
       - zoxide
@@ -60,6 +61,7 @@ packages:
       - netbird-ui
       - scrcpy
     absent:
+      - kitty
       - firefox
       - firefox-langpacks
   flatpak:
