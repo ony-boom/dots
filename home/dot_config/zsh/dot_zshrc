@@ -20,7 +20,7 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # Completion
 autoload -U compinit && compinit
-zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+zstyle ':completion:*' format $'%{\e[2;37m%}Completing %d%{\e[m%}' # %{..%} = zero-width, else zle miscounts and garbles redraw
 zstyle ':completion:*' menu select                   # tab cycles with highlighted selection
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS} # color file candidates like ls
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' # case-insensitive
