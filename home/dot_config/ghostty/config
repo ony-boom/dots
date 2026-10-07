@@ -6,7 +6,6 @@ theme = dark:Rose Pine, light:Rose Pine Dawn
 
 window-padding-y = 10
 window-padding-x = 12
-background-opacity = 0.85
 unfocused-split-opacity = 1
 
 gtk-titlebar = false
