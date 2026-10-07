@@ -1,7 +1,77 @@
-{{ if lookPath "gsettings" -}}
+{{ if lookPath "dconf" -}}
 #!/bin/sh
 # GNOME preferences. Re-runs when this file changes.
+# The keybinding dirs are reset first, so anything bound through the Settings
+# app but not listed here is dropped on the next run: add shortcuts here.
 set -eu
+
+for dir in \
+    /org/gnome/settings-daemon/plugins/media-keys/ \
+    /org/gnome/desktop/wm/keybindings/ \
+    /org/gnome/shell/keybindings/
+do
+    dconf reset -f "$dir"
+done
+
+dconf load / <<'INI'
+# focus follows the mouse like hyprland: hovering a window focuses it (no raise),
 # and moving onto the desktop keeps the last window focused
-gsettings set org.gnome.desktop.wm.preferences focus-mode 'sloppy'
+[org/gnome/desktop/wm/preferences]
+focus-mode='sloppy'
+
+# window management
+[org/gnome/desktop/wm/keybindings]
+close=['<Super>q']
+toggle-maximized=['<Super>f']
+switch-to-workspace-1=['<Super>1']
+switch-to-workspace-2=['<Super>2']
+switch-to-workspace-3=['<Super>3']
+switch-to-workspace-4=['<Super>4']
+move-to-workspace-1=['<Super><Shift>1']
+move-to-workspace-2=['<Super><Shift>2']
+move-to-workspace-3=['<Super><Shift>3']
+move-to-workspace-4=['<Super><Shift>4']
+
+# free up shell defaults that clash with the bindings above/below
+[org/gnome/shell/keybindings]
+screenshot-window=@as []
+switch-to-application-1=@as []
+switch-to-application-2=@as []
+switch-to-application-3=@as []
+switch-to-application-4=@as []
+toggle-application-view=@as []
+toggle-message-tray=@as []
+
+# app launchers
+[org/gnome/settings-daemon/plugins/media-keys]
+control-center=['<Super>comma']
+home=['<Super>e']
+www=['<Super>b']
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/terminal/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/launcher/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/clipboard/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/emoji/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/screenshot/']
+
+[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/terminal]
+name='Terminal'
+binding='<Super>Return'
+command='sh -c "exec $TERMINAL"'
+
+[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/launcher]
+name='Launcher'
+binding='<Super>r'
+command='vicinae toggle'
+
+[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/clipboard]
+name='Clipboard'
+binding='<Super>v'
+command='vicinae vicinae://launch/clipboard/history'
+
+[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/emoji]
+name='Emoji'
+binding='<Control><Alt>e'
+command='vicinae vicinae://launch/core/search-emojis'
+
+[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/screenshot]
+name='Satty screenshot'
+binding='<Alt>Print'
+command='{{ .chezmoi.homeDir }}/.local/bin/satty-screenshot'
+INI
 {{ end -}}

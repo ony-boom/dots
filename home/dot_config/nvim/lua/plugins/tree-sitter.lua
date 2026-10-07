@@ -23,11 +23,14 @@ local parsers = {
 	"kdl",
 	"prisma",
 	"todotxt",
+	"bash",
+	"zsh",
 }
 
 -- Neovim filetypes that should get treesitter highlighting. These differ from
 -- the parser names: .tsx -> filetype `typescriptreact` (tsx parser),
--- .jsx -> filetype `javascriptreact` (javascript parser).
+-- .jsx -> filetype `javascriptreact` (javascript parser), .sh -> filetype `sh`
+-- (bash parser).
 local filetypes = {
 	"typescript",
 	"typescriptreact",
@@ -46,6 +49,9 @@ local filetypes = {
 	"kdl",
 	"prisma",
 	"todotxt",
+	"sh",
+	"bash",
+	"zsh",
 }
 
 -- Associate todo.txt and done.txt with the todotxt filetype so treesitter
@@ -54,12 +60,20 @@ vim.filetype.add({
 	filename = {
 		["todo.txt"] = "todotxt",
 		["done.txt"] = "todotxt",
+		-- chezmoi source names in the dots repo
+		["dot_zshrc"] = "zsh",
+		["dot_zshenv"] = "zsh",
+	},
+	pattern = {
+		-- chezmoi script templates: the leading {{ if }} hides the shebang
+		[".*%.sh%.tmpl"] = "sh",
 	},
 })
 
 -- Map the mismatched filetypes to their parser so vim.treesitter.start() resolves them.
 vim.treesitter.language.register("tsx", { "typescriptreact" })
 vim.treesitter.language.register("javascript", { "javascriptreact" })
+vim.treesitter.language.register("bash", { "sh" })
 
 require("nvim-treesitter").install(parsers)
 
