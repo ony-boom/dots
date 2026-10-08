@@ -1,4 +1,4 @@
-shell-integration = none
+shell-integration = zsh
 font-family = DankMono Nerd Font
 
 font-size = 16
