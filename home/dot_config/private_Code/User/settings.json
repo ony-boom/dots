@@ -2,7 +2,7 @@
     "chat.titleBar.openInAgentsWindow.enabled": false,
     "workbench.colorTheme": "Rosé Pine",
     "workbench.navigationControl.enabled": false,
-    "editor.fontFamily": "DankMono Nerd Font Mono",
+    "editor.fontFamily": "JetBrainsMono Nerd Font",
     "editor.fontSize": 16,
     "editor.fontLigatures": true,
     "window.commandCenter": false,
