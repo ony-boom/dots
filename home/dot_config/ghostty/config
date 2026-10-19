@@ -15,3 +15,4 @@ cursor-style = bar
 cursor-style-blink = true
 
 keybind = ctrl+shift+r=prompt_surface_title
+keybind = ctrl+enter=unbind
