@@ -44,7 +44,17 @@ function focusNeighbour(dx, dy) {
             bestScore = score;
         }
     }
-    best?.activate(global.get_current_time());
+    if (!best)
+        return;
+    best.activate(global.get_current_time());
+
+    // move the pointer along (unless already over it) so sloppy focus doesn't
+    // hand focus straight back to the window under the cursor
+    const r = best.get_frame_rect();
+    const [px, py] = global.get_pointer();
+    if (px < r.x || px >= r.x + r.width || py < r.y || py >= r.y + r.height)
+        global.stage.context.get_backend().get_default_seat()
+            .warp_pointer(r.x + r.width / 2, r.y + r.height / 2);
 }
 
 export default class DirectionalFocus extends Extension {
