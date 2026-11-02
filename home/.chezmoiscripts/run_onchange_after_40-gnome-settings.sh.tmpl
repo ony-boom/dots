@@ -8,6 +8,7 @@ set -eu
 for dir in \
     /org/gnome/settings-daemon/plugins/media-keys/ \
     /org/gnome/desktop/wm/keybindings/ \
+    /org/gnome/mutter/keybindings/ \
     /org/gnome/shell/keybindings/
 do
     dconf reset -f "$dir"
@@ -23,6 +24,9 @@ focus-mode='sloppy'
 [org/gnome/desktop/wm/keybindings]
 close=['<Super>q']
 toggle-maximized=['<Super>f']
+# Super+arrows is taken by the directional-focus extension (focus, not tile/maximize)
+maximize=@as []
+unmaximize=['<Alt>F5']
 switch-to-workspace-1=['<Super>1']
 switch-to-workspace-2=['<Super>2']
 switch-to-workspace-3=['<Super>3']
@@ -36,6 +40,10 @@ switch-to-workspace-left=['<Super>Page_Up', '<Super>KP_Prior', '<Super><Alt>Left
 switch-to-workspace-right=['<Super>Page_Down', '<Super>KP_Next', '<Super><Alt>Right']
 switch-to-workspace-up=@as []
 switch-to-workspace-down=@as []
+
+[org/gnome/mutter/keybindings]
+toggle-tiled-left=@as []
+toggle-tiled-right=@as []
 
 # free up shell defaults that clash with the bindings above/below
 [org/gnome/shell/keybindings]
@@ -79,4 +87,14 @@ name='Satty screenshot'
 binding='<Alt>Print'
 command='{{ .chezmoi.homeDir }}/.local/bin/satty-screenshot'
 INI
+
+# enable the directional-focus extension by uuid: `gnome-extensions enable`
+# can't see it until the shell restarts, so edit the enabled list directly
+ext=directional-focus@dots
+enabled=$(gsettings get org.gnome.shell enabled-extensions)
+case $enabled in
+    *"'$ext'"*) ;;
+    "@as []") gsettings set org.gnome.shell enabled-extensions "['$ext']" ;;
+    *) gsettings set org.gnome.shell enabled-extensions "${enabled%]}, '$ext']" ;;
+esac
 {{ end -}}

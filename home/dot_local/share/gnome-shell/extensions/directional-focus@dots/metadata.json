@@ -1,0 +1,6 @@
+{
+  "uuid": "directional-focus@dots",
+  "name": "Directional Focus",
+  "description": "Super+arrows focus the nearest window in that direction",
+  "shell-version": ["50"]
+}
