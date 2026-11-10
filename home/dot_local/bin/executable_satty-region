@@ -1,0 +1,16 @@
+#!/bin/sh
+# wlroots (mango) counterpart of satty-screenshot: pick a region with slurp,
+# capture it with grim, annotate in satty. satty-screenshot goes through the
+# GNOME portal, which can't do region selection on a wlroots compositor.
+set -eu
+
+dir=$(xdg-user-dir PICTURES)/Screenshots
+mkdir -p "$dir"
+
+region=$(slurp) || exit 0   # cancelled
+
+grim -g "$region" - | "$HOME/.local/share/mise/shims/satty" \
+    --filename - \
+    --output-filename "$dir/Screenshot From %Y-%m-%d %H-%M-%S.png" \
+    --copy-command wl-copy \
+    --early-exit
