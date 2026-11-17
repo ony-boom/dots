@@ -6,6 +6,9 @@ set -eu
 {{- range $p.copr }}
 sudo dnf copr enable -y {{ . }}
 {{- end }}
+{{- range $rpm, $spec := $p.release_rpms }}
+rpm -q {{ $rpm }} >/dev/null 2>&1 || sudo dnf install -y --nogpgcheck --repofrompath '{{ $spec }}' {{ $rpm }}
+{{- end }}
 {{- range $name, $url := $p.repos }}
 [ -f /etc/yum.repos.d/{{ $name }}.repo ] || sudo dnf config-manager addrepo --from-repofile={{ $url }}
 {{- end }}

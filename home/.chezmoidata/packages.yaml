@@ -12,6 +12,9 @@ packages:
       - zeno/scrcpy
     repos:
       docker-ce: https://download.docker.com/linux/fedora/docker-ce.repo
+    # repos that ship as a release rpm: <rpm>: <--repofrompath spec> (bootstrap, skipped once installed)
+    release_rpms:
+      terra-release: terra,https://repos.fyralabs.com/terra$releasever
     # repo files written verbatim to /etc/yum.repos.d/<name>.repo
     repofiles:
       netbird: |
@@ -60,6 +63,22 @@ packages:
       - netbird
       - netbird-ui
       - scrcpy
+      # mango session: compositor, screenshots, clipboard, media/volume/brightness keys
+      - mangowm
+      - quickshell
+      # portals (mango-portals.conf: wlr for screencast/screenshot, gtk for the rest) and a polkit agent
+      - xdg-desktop-portal-wlr
+      - xdg-desktop-portal-gtk
+      - mate-polkit
+      - grim
+      - slurp
+      - wl-clipboard
+      - wireplumber
+      - brightnessctl
+      - playerctl
+      # work: Phase CLI, installed straight from its release rpm (x86_64).
+      # No repo exists, so bump the version in the URL to upgrade.
+      - https://github.com/phasehq/cli/releases/download/v2.3.3/phase_cli_2.3.3_linux_amd64.rpm
     absent:
       - kitty
       - firefox
